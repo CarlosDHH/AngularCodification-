@@ -1,0 +1,46 @@
+<h2 style="text-align: center; margin-bottom: 20px; color: #333;">Registro con cifrado DES</h2>
+
+<form [formGroup]="registerForm" style="max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+  <div style="margin-bottom: 15px;">
+    <label for="nombre" style="display: block; margin-bottom: 5px;">Nombre:</label>
+    <input id="nombre" formControlName="nombre" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+    <div *ngIf="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched" style="color: red; font-size: 12px;">
+      El nombre es requerido
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="email" style="display: block; margin-bottom: 5px;">Email:</label>
+    <input id="email" formControlName="email" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" style="color: red; font-size: 12px;">
+      Debe ser un email válido
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="password" style="display: block; margin-bottom: 5px;">Contraseña:</label>
+    <input id="password" type="password" formControlName="password" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" style="color: red; font-size: 12px;">
+      La contraseña es requerida
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="key" style="display: block; margin-bottom: 5px;">Clave para cifrar:</label>
+    <input id="key" formControlName="key" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+    <div *ngIf="registerForm.get('key')?.invalid && registerForm.get('key')?.touched" style="color: red; font-size: 12px;">
+      La clave es requerida
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+    <button type="button" (click)="encrypt()" style="background-color: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Cifrar</button>
+    <button type="button" (click)="decrypt()" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Descifrar</button>
+  </div>
+</form>
+
+<h3 style="text-align: center; margin-top: 20px;">Resultado cifrado:</h3>
+<p style="text-align: center;">{{ result }}</p>
+
+<h3 style="text-align: center; margin-top: 20px;">Resultado descifrado:</h3>
+<p style="text-align: center;">{{ decryptedResult }}</p>

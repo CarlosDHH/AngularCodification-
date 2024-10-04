@@ -23,6 +23,10 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+  "crypto-js",
+  "node-forge"
+],
             "outputPath": "dist/angular-codification",
             "index": "src/index.html",
             "browser": "src/main.ts",

@@ -1,0 +1,45 @@
+<h2 style="text-align: center; margin-bottom: 20px; color: #333;">Registro con cifrado DSA</h2>
+
+<form [formGroup]="registerForm" style="max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #f9f9f9;">
+  <div style="margin-bottom: 15px;">
+    <label for="nombre" style="display: block; margin-bottom: 5px;">Nombre:</label>
+    <input id="nombre" formControlName="nombre" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+    <div *ngIf="registerForm.get('nombre')?.invalid && registerForm.get('nombre')?.touched" style="color: red; font-size: 12px;">
+      El nombre es requerido
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="email" style="display: block; margin-bottom: 5px;">Email:</label>
+    <input id="email" formControlName="email" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" style="color: red; font-size: 12px;">
+      Debe ser un email válido
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="password" style="display: block; margin-bottom: 5px;">Contraseña:</label>
+    <input id="password" type="password" formControlName="password" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;" />
+    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" style="color: red; font-size: 12px;">
+      La contraseña es requerida
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+    <button type="button" (click)="generateKeyPair()" style="background-color: #28a745; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Generar Claves</button>
+    <button type="button" (click)="sign()" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Firmar</button>
+    <button type="button" (click)="verify()" style="background-color: #17a2b8; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer;">Verificar</button>
+  </div>
+</form>
+
+<h3 style="text-align: center; margin-top: 20px;">Clave Privada:</h3>
+<pre style="background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">{{ privateKeyPem }}</pre>
+
+<h3 style="text-align: center; margin-top: 20px;">Clave Pública:</h3>
+<pre style="background-color: #f0f0f0; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">{{ publicKeyPem }}</pre>
+
+<h3 style="text-align: center; margin-top: 20px;">Firma:</h3>
+<p style="text-align: center;">{{ signature }}</p>
+
+<h3 style="text-align: center; margin-top: 20px;">Resultado de verificación:</h3>
+<p style="text-align: center;">{{ verificationResult }}</p>
